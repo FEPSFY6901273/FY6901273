@@ -1,53 +1,119 @@
 <html>
-<head>
-  <h1>hello world</h1>
-</head>
   <body>
-    <img src="WebBanner2023.png" alt="banner" width="800" height="300">
+    <img src="WebBanner2023.png" alt="banner" width="600" height="200">
+
     <h1><b>ENG0018 Computer Laboratory 2024/25</b></h1>
     <h2>Student URN:6901273</h2>
     <hr>
-    <h2 style="font-family:calibri;"><b>Conference paper: Bridge Deck Repairs</b></h2>
+    <h2 style="font-family:Arial, Helvetica, sans-serif;" id="MainTitle"><b> Conference Paper: An investigation into how Micro UAV photogrammetry can reconstruct the human face during criminal investigations. 
+    </b></h2>
     <hr>
-<button id="colorButton">Click me to change colour</button>
-    <script>
-      //Get a reference to the button element
-      var button=document.getElementById("colorButton");
-      //Function to change the button color
-      function changeColor(){
-        //Generate a random color (hexadecimal)
-        var randomColor="#" + Math.floor(Math.random()*16777215).toString(16);
+<video src="Conference Project Presentation.mp4" width="800" height="450" controls></video>
 
-        //Set the button's background color to the random color
-        button.style.backgroundColor=randomColor;
-      }
-      //Add a click event listener to the button 
-      button.addEventListener("click",changeColor);
-    </script>
-    
-    <!style for tables>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////// Adding last update ////////////////////////////// -->
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+    <!-- Last commit time display -->
+<div id="last-updated">Loading last update time...</div>
+<!-- Verify Button -->
+<button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+    Verify Last Modified Time
+</button>
+<script>
+    async function getLastUpdatedTime() {
+        const username = 'FEPSFY6901273';
+        const repo = 'FY6901273';
+       
+        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
+            }
+            const commits = await response.json();
+            if (commits && commits.length > 0) {
+                const lastCommitDate = new Date(commits[0].commit.committer.date);
+               
+                // Displaying the time on load
+                document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+            } else {
+                document.getElementById('last-updated').innerText = 'No commits found in the repository.';
+            }
+        } catch (error) {
+            console.error('Error fetching the last updated time:', error);
+            document.getElementById('last-updated').innerText = 'Error fetching update time. Please check the repository details.';
+        }
+    }
+    // Function to verify the last update time by re-fetching it from the API
+    async function verifyLastUpdatedTime() {
+        document.getElementById('last-updated').innerText = 'Verifying...';
+        await getLastUpdatedTime();
+        alert("Last modified time has been successfully verified from GitHub API.");
+    }
+    // Initial load to display the time on page load
+    window.onload = getLastUpdatedTime;
+</script>
+
+
+ 
+ <!style for tables>
     <style>
            table {
              font-family: arial, sans-serif;
              border-collaspe: collapse;
-             width:30%;
+             width:40%;
            }
       td, th {
-        boarder: 1px solid #dddddd;
+        boarder: 1px solid #b3c8ef; 
         text-align: left;
         padding: 8px;
       }
 
       tr:nth-child(even) {
-        background-color: #dddddd;
+        background-color: #ebbfe6;
       }
 
     </style>
     <style>
       p.ex1 {
-        margin-left: 250px;
+        margin-left: 300px;
       }
     </style>
+
+<!table of contents>
+<table>
+  <tr>
+    <th><h3>Table of contents</h3></th>
+  </tr>
+  <tr>
+    <td><a href="#Abstract">Abstract</td>
+  </tr>
+  <tr>
+    <td><a href="#Introduction">Introduction</td>
+  </tr>
+  <tr>
+    <td><a href="#Photogrammetry?">What is Photogrammetry?</td>
+  </tr>
+  <tr>
+    <td><a href="#UAVs">Introduction to UAVs</td>
+  </tr>
+  <tr>
+      <td><a href="#Human_Face">3D Reconstruction of a Human Face</td>
+  </tr>
+  <tr>
+      <td><a href="#Conclusion">Conclusion</a></td>
+  </tr>
+  <tr>
+      <td><a href="#References">References</a></td>
+  </tr>
+</table>
+
 
 <meta name="viewpoint" content="width=device-width, inital-scale=1">
   <link  rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
@@ -55,71 +121,131 @@
   .mySlides {display:none;}
 </style>
 
-<body style="background-color:#FFFFFF;margin-left:50px;>
-  <hr>
-  <h3 id="Abstract">Abstract<h/h3>
+<body style="background-color:#ffffff;margin-left:50px";>
+   <hr>
+  <h3 id="Abstract">Abstract</h3>
   </p>
+ <pre class="ex1" style="font-size: 15px;font-family: Arial, Helvetica, sans-serif;">
+    Advancements of photogrammetry, computer softwares and Unmanned Aerial Vehicles (UAVs), it is the future of solving cold
+    cases, involving unidentifiable victims. This article explores the potential of using drone technology to accurately
+    capture and reform a human face during crime scene investigations and hopefully paving the way for a precise
+    identification to bring closure to their families and serve justice to the victims. Traditionally, before advanced
+    technology emerged, forensic investigators would use clay to form the face of the victims, however this would be placed
+    directly onto their skull, an extremely invasive way to find out their characteristics and probably frowned upon by many
+    peers in the industry. However, this newer technology provides a non-invasive approach from gathering data all the way
+    to developing facial features. As technology evolves, new accurate methods would be introduced, such as laser scanning,
+    to completely eliminate the chance of human error.
+ </pre>
 
-  <p class="ex1">
-    <pre>
-      <p>
-      This paer presents a novel adaptive active learning strategy. The most accurate classification model from the heterogeneous
-      classifer pool is selected at each learning epoch. Our goal is to achieve greater incremental improvement in accuracy, compared 
-      to using a single type of classification model throughout the process. The strategy is evaluated on benchmark data sets.
-      We further consider an application to texture classification problems in sonar mosaic imagery and compare it with non-adaptive
-      active learning and traditional machine learning approaches. Our results show that.. We conclude that...
-      </p>
-    </pre>
-    
- <h3 id="Analysis and discussion">Analysis and discussion</h3>
-  </p>
-    <p class="ex2">
-Active Learning (Angluin, 1988, Cohn et al., 1994) is a paradigm where a concept is learnt by an
-intelligent machine through the interaction of an oracle with the machine system, over a sequence of 
-learning epochs. A distinctive component in an active system is the querying strategy, used to sample
-candidate training instances from a pool and evaluate them for informativeness, ie., their potential
-to improve the classification model. Various strategies have been proposed including; Query by
-Committee (Seung et al., 1992), Monte Carlo estimation...
+ <h3 id="Introduction">Introduction</h3>
  
-    <!table of contents>
-  <table>
-    <tr>
-      <th><h3>Table of contents</h3></th>
-    </tr>
-    <tr>
-      <td><a href="#Abstract">Abstract</td>
-    </tr>
-    <tr>
-      <td><a href="#Introduction">Introduction</td>
-    </tr>
-    <tr>
-      <td><a href="#Analysis and discussion">Analysis and discussion</td>
-    </tr>
-    <tr>
-      <td><a href="#References">References</td>
-    </tr>
-  </table>
+ <pre class="ex1" style="font-size: 15px;font-family: Arial, Helvetica, sans-serif;">
+    <p id="Introduction1">
+    Photogrammetry is "the technique of using photographs to ascertain measurements of what is photographed" <a href="#(Oxford Dictionary, 2023)">(Oxford Dictionary, 2023)</a>
+    , a vital element to solving criminal investigations and decreasing the possibility of cold cases. The
+    "ascertained measurements" extracted from photographs can then be designed into a computer 3D model, in this case it
+    gives investigators an insight on the layout of the crime scene from multiple perspectives, perhaps introducing a new
+    lead in the investigation. Thus, the main form of photogrammetry consists of Micro UAV (Micro Unmanned Aerial
+    Vehicle)<a href="#(PS and Jeyan, 2020)">(PS and Jeyan, 2020)</a> technology which allows machinery such as drones to take measurements and scans for you.
+    Ultimately, launching Micro UAV technology at the crime scene enables the site to be protected from damage and be
+    preserved whilst the case is still active, and if the case needs to be re-examined in the future <a href="#(Sazaly, 2022)">(Sazaly, 2022)</a>.
+    </p>
+ </pre>
+ 
+   
+ <h3 id="Photogrammetry?">What is Photogrammetry?</h3>
+  </p>
+  <p>
+   <pre class="ex2" style="font-size: 15px;font-family: Arial, Helvetica, sans-serif;" id="Photogrammetry">
+    Ultimately, there are 5 processes that make up a 3D model using photogrammetry which include data collection, image
+    alignment, point cloud generation, mesh creation and texturing <a href="#(Farhadi, 2024)">(Farhadi, 2024)</a>. Data is normally collected using cameras
+    or drones such as Micro UAV to collect a variety of photographs of the scene with 60%- 80% overlapping so that during
+    the image alignment the software can detect common features across all the images. Thus, in the cloud, a point is
+    assigned to each part of the image and therefore corresponds to a certain point in the crime scene to make 3D
+    coordinates. These coordinates are used to create a mesh, once created they apply the photos and should end up looking
+    like the original model <a href="#(Farhadi, 2024)">(Farhadi, 2024)</a>. Correspondingly, this will increase the efficiency of the models as it is all
+    done on a computer software and therefore minimises the risk for human error during manual measurements processes.
+    Additionally, the ethical issues around photogrammetry are minimal due to the non invasive nature of data collection,
+    especially at crime scenes. However, there will always be issues with potential vulnerability and discussions around
+    anonymity <a href="#(Tremlett, 2024)">(Tremlett, 2024)</a> as there is nobody to consent to the photographs being taken of their personal residents or
+    their dead being.
+   </pre>
+  </p>
+  <div class="row">
+    <div class="'column">
+    
+        <img src="Figure1.png" alt="Figure1" height="400px">
+        <p>Figure 1 <a href="#(Zancajo-Blazquez ,2015)">(Zancajo-Blazquez, 2015)</a></p>
+    </div>
+    <div class="column">
+        <img src="Figure2.png" alt="Figure1" height="300px">
+        <p>Figure 2 <a href="#(Luchowski, 2021)">(Luchowski, 2021)</a></p>
+    </div>
+  </div>
 
-Table 1: Data on cost and lifespan of bridge repairs 
-  <table>
-    <tr>
-      <th>£ Cost of repairs</th>
-      <th>Lifespan of repairs (years)</th>
-    </tr>
-    <tr>
-      <td>0.7m</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <td>3.3m</td>
-       <td>4</td>    
-    </tr>
-    <tr>
-      <td>17.4m</td>
-      <td>9</td>
-    </tr>
-      </table>
-    <p id="date&time"></p>
+<style>
+    .column{
+        float: left;
+        width: 50%;
+        padding: 5px;
+    }
+    .row::after{
+        content: "";
+        clear:both;
+        display: table;
+    }
+</style>
+
+ <h3 id="UAVs">Introduction to UAVs</h3>
+ 
+ <p>
+ <pre class="ex3" style="font-size: 15px;font-family: Arial, Helvetica, sans-serif;" id="Para3">
+     Evidently, Unmanned Aerial Vehicle (UAVs) have been adapted for forensic science by making them smaller so they can fit
+     through gaps, however they use them at crime scenes because they are efficient, easy to transport and provide the
+     results they need for the 3D photogrammetry analysis. Comparatively, UAVs otherwise known as drones, have widely been
+     adopted in forensic investigations, however there is still limited evidence "regarding categorisations of drone
+     applications" <a href="#(Sabri, 2023)">(Sabri, 2023)</a>. The Micro UAVs are approximately 16x2.5 cm and can easily be held between two fingers
+     <a href="#(Dean, 2023)">(Dean, 2023)</a> which makes them perfect for transporting and manoeuvring between the crime scenes and labs to extract the
+     photos the drone has taken, to start the photogrammetry process. However, in challenging environments such as low light
+     the photographs may not be clear enough for the software to identify or in high winds, where the drone might not even be
+     able to stay in flight, perhaps even leading to a damaged UAVs.      
+</pre>
+ </p>
+ 
+
+ <h3 id="Human_Face">3D Reconstruction of a Human Face</h3>
+ <p>
+ <pre class="ex4" style="font-size: 15px;font-family: Arial, Helvetica, sans-serif;" id="3D_Reconstruction">
+    Before photogrammetry existed, clay was originally placed over the skull and from there they would reform the face by
+    taking educated guesses of the facial structure. Additionally, to start the reconstruction the skull is placed in the
+    "Frankfurt horizontal plane" which mimics the natural position of a human head at rest and then several points are
+    placed on the face, which can be seen in step B in Figure 3 <a href="#(Houlton, 2022)">(Houlton, 2022)</a>.
+
+    <img src="Figure3.png" alt="Figure3" height="200px" width="500">
+    <p>Figure 3. <a href="#(Houlton, 2022)">(Houlton, 2022)</a></p>
+
+
+    Comparatively, at Ohio State University, researchers used a software called "Mesh" which is usually used for video
+    games, to take a clay structure and turn it into a tool to develop different facial characteristics <a href="#(Botley, 2023)">(Botley, 2023)</a>,
+    however our photogrammetry using UAV will work in the same way, by taking hundreds of pictures to form the human skull,
+    and layer a variety of characteristics on top of there reconstructed face to identify victims. This provides many
+    identifications of what the victims might have looked like and eventually the more photogrammetry software develops, it
+    increases the likelihood of victims from cold cases being identified <a href="#(Molnar, 2023)">(Molnar, 2023)</a>. Additionally, photogrammetry is
+    being used as a reliable method to identify the sex through human skulls including age estimation, bite marks and soft
+    tissue, which were once difficult to produce using traditional forensic techniques <a href="#(Silva, 2023)">(Silva, 2023)</a>, allowing investigators
+    to identify the once unidentifiable victims efficiently and accurately.
+ </pre>
+ </p>
+
+ <h3 id="Conclusion">Conclusion</h3>
+ <p>
+ <pre class="ex5" style="font-size: 15px;font-family: Arial, Helvetica, sans-serif;" id="Conclusion_InText">
+    Therefore, Micro UAV photogrammetry offers significant potential in criminal investigations by recrafting 3D models of
+    human faces that aid identifying victims during cold cases. Hopefully, as technology advances these systems will improve
+    offering more efficient and accurate methods to solve these demanding issues.
+ </pre>
+ </p>
+ <p id="date&time"></p>
     <script>
       //Javascript to display the data and time on my webpage 
       const d = new Date();
@@ -127,19 +253,120 @@ Table 1: Data on cost and lifespan of bridge repairs
     
     </script>
 
-   '<a href="https://www.icevirtuallibrary.com/doi/full/10.1680/jbren.21.00034">Toshihiko et al(2023).</a>a>'
  <h3 id="References">References</h3> 
-  
-  <p>
-    <pre>
-      
-      Augluin....
-      Brinker...
-      Bruzzone..
-      Campbell..
-      
-    </pre>
-  </p>
-  </body>
-</html>  
+ <pre class="ex5" style="font-size: 15px;font-family: Arial, Helvetica, sans-serif;">
+    (Botley, 2023)
+    The Lantern- Ohio state researchers explore photogrammetry, the future of solving cold cases. 
+    <a href="https://www.thelantern.com/2023/10/ohio-state-researchers-explore-photogrammetry-the-future-of-solving-cold-cases/" class="link text" id="(Botley, 2023)">https://www.thelantern.com/2023/10/ohio-state-researchers-explore-photogrammetry-the-future-of-solving-cold-cases/</a>
 
+    (Dean, 2023) 
+    Micro-Drones: Miniature Reconnaissance Assets for the Modern Battlefield 
+    <a href="https://euro-sd.com/2023/05/articles/31330/micro-drones-miniature-reconnaissance-assets-for-the-modern-battlefield/#:~:text=It%20is%20in%20service%20with,The%20Black%20Hornet%20Micro%2DUAV.&text=Measuring%2016%C3%972.5%20cm,be%20held%20between%20two%20fingers." class="link text">https://euro-sd.com/2023/05/articles/31330/micro-drones-miniature-reconnaissance-assets-for-the-modern-battlefield/#:~:text=It%20is%20in%20service%20with,The%20Black%20Hornet%20Micro%2DUAV.&text=Measuring%2016%C3%972.5%20cm,be%20held%20between%20two%20fingers.
+    </a>
+
+    (Farhadi, 2024)
+    Neurojet, May 27th 2024
+    <a href="https://neuroject.com/photogrammetry-in-restoration/" class="link text" id="(Farhadi, 2024)">https://neuroject.com/photogrammetry-in-restoration/</a>
+    Assessed 3/11/2024
+
+    (Houlton, 2022)
+    Published May 6th 2022
+    Facing our Past with Facial Reconstruction
+   <a href="https://www.digitscotland.com/facing-our-past-with-facial-reconstruction/" class="link text" id="(Houlton, 2022)"> https://www.digitscotland.com/facing-our-past-with-facial-reconstruction/</a>
+
+   (Luchowski, 2021)
+   Luchowski, Leszek & Tomaka, Agnieszka & Pojda, Dariusz & Skabek, Krzysztof & Kowalski, Przemysław. (2021). Multimodal Imagery in Forensic Incident Scene Documentation. Sensors. 21. 10.3390/s21041407. 
+  <a href="https://www.researchgate.net/publication/349395535_Multimodal_Imagery_in_Forensic_Incident_Scene_Documentation/citation/download" class="link text" id="(Luchowski, 2021)">https://www.researchgate.net/publication/349395535_Multimodal_Imagery_in_Forensic_Incident_Scene_Documentation/citation/download</a>
+
+
+    (Molnar, 2023)
+    The Lantern- Ohio state researchers explore photogrammetry, the future of solving cold cases. 
+    <a href="https://www.thelantern.com/2023/10/ohio-state-researchers-explore-photogrammetry-the-future-of-solving-cold-cases/" class="link text" id="(Molnar, 2023)">https://www.thelantern.com/2023/10/ohio-state-researchers-explore-photogrammetry-the-future-of-solving-cold-cases/</a>
+
+    
+    (Oxford Dictionary, 2023) 
+    “Photogrammetry, N.” Oxford English Dictionary, Oxford UP, July 2023, 
+    <a href="https://doi.org/10.1093/OED/1092471116." class="link text" id="(Oxford Dictionary, 2023)"> https://doi.org/10.1093/OED/1092471116.</a>
+    Assessed 27/10/2024
+
+    (PS and Jeyan, 2020)
+    PS, R., & Jeyan, M. L. (2020). Mini Unmanned Aerial Systems (UAV) - A Review of the Parameters for Classification of a Mini UAV.. International Journal of Aviation, Aeronautics, and Aerospace, 7(3). 
+    <a href="https://doi.org/10.15394/ijaaa.2020.1503" class="link text" id="(PS and Jeyan, 2020)">https://doi.org/10.15394/ijaaa.2020.1503</a>
+    Assessed 31/10/2024
+
+    (Sabri, 2023)
+    Mohd Sabri, N.E., Chainchel Singh, M.K., Mahmood, M.S. et al. A scoping review on drone technology applications in forensic science. SN Appl. Sci. 5, 233 (2023).
+    <a href="https://doi.org/10.1007/s42452-023-05450-4" class="link text" id="(Sabri, 2023)">https://doi.org/10.1007/s42452-023-05450-4</a>
+
+    (Sazaly, 2022) 
+    Sazaly, Alysa & Mohd Ariff, Mohd Farid & Razali, Ahmad Firdaus. (2022). Usage of Micro UAV for Forensic Photogrammetry. 10. 12-23. 
+    <a href="https://www.researchgate.net/publication/366581686_Usage_of_Micro_UAV_for_Forensic_Photogrammetry" class="link text" id="(Sazaly, 2022)">https://www.researchgate.net/publication/366581686_Usage_of_Micro_UAV_for_Forensic_Photogrammetry</a>
+    Assessed 31/10/2024
+
+    (Silva, 2023)
+    Juliana Calistro da Silva, Henrico Badaoui Strazzi-Sahyon, Jesus Carlos Andreo, Maurício Donalonso Spin, Gabriel Pereira Nunes, André Luís Shinohara,
+    A systematic review of photogrammetry as a reliable methodology in gender identification of human skull,
+    Journal of Forensic and Legal Medicine, Volume 97, 2023,
+    <a href="https://www.sciencedirect.com/science/article/pii/S1752928X23000641" class="link text" id="(Silva, 2023)">https://www.sciencedirect.com/science/article/pii/S1752928X23000641</a>
+    
+    (Tremlett, 2024)
+    ​Using visual methods: guidance for ethical research
+    Written by Dr Annabel Tremlett, School of Health and Care Professions
+    Jan 2024 
+    <a href="https://guidelines.docstore.port.ac.uk/A1112869.pdf" class="link text" id="(Tremlett, 2024)">https://guidelines.docstore.port.ac.uk/A1112869.pdf</a>
+    Assessed 4/11/2024
+
+    (Zancajo-Blazquez, 2015)
+    Zancajo-Blazquez, Sandra & González-Aguilera, Diego & Gonzalez, Higinio & López, David. (2015). An Automatic Image-Based Modelling Method Applied to Forensic Infography. PLOS ONE. 10. e0118719. 10.1371/journal.pone.0118719. 
+    <a href="https://www.researchgate.net/figure/Photogrammetric-dense-model-resulting-from-the-first-crime-scene-analysed-the-suicide_fig2_276911220" class="link text" id="(Zancajo-Blazquez,2015)">https://www.researchgate.net/figure/Photogrammetric-dense-model-resulting-from-the-first-crime-scene-analysed-the-suicide_fig2_276911220</a>
+
+    </pre>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////// Word count function ////////////////////////////// -->
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- Placeholder for total word count -->
+
+<p id="totalWordCount"></p>
+<hr>
+<script>
+  // Function to calculate and display word count for a specified section
+  function displayWordCount(sectionId, outputId) {
+    // Get the text content from the specified section
+    const text = document.getElementById(sectionId).textContent;
+    // Split text into words based on spaces and filter out any empty strings
+    const wordArray = text.trim().split(/\s+/);
+    // Count the words
+    const wordCount = wordArray.length;
+    // Return the word count for summing purposes
+    return wordCount;
+  }
+  // Function to calculate and display total word count from selected sections
+  function displayTotalWordCount() {
+    // Calculate word count for each section and accumulate the total
+    const IntroductionCount = displayWordCount("Introduction1");
+    const Paragraph2 = displayWordCount("Photogrammetry");
+    const Paragraph3 = displayWordCount("Para3");
+    const Paragraph4 = displayWordCount("3D_Reconstruction");
+    const Paragraph5 = displayWordCount("Conclusion_InText");
+    const title1 = displayWordCount("Conclusion");
+    const title2 = displayWordCount("Introduction");
+    const title3 = displayWordCount("UAVs");
+    const title4 = displayWordCount("Human_Face");
+    const mainTitle = displayWordCount("MainTitle");
+
+
+    // Calculate the sum of all selected sections
+    const totalWordCount = IntroductionCount + Paragraph2 + Paragraph3 + Paragraph4 + Paragraph5 + title1 + title2 + title3 + title4 + mainTitle;
+    // Display the total word count
+    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
+  }
+  // Run the function for specific sections and display total count when the page loads
+  window.onload = displayTotalWordCount;
+</script>
+
+ 
+
+
+ </body>
+</html>  
